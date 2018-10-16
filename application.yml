@@ -1,0 +1,50 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /
+
+
+mybatis:
+         config-locations: classpath:mybatis/mybatis-config.xml
+         mapper-locations: classpath*:com/css/platform/dao/mapping/*.xml
+         configuration:
+                log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+spring:
+    datasource:
+        driver-class-name: com.mysql.jdbc.Driver
+        username: root
+        password: 123456
+        url: jdbc:mysql://localhost:3306/favourite_web?charset=utf8mb4&serverTimezone=UTC&storage_engine=InnoDB
+        tomcat:
+            default-auto-commit: false
+            initial-size: 15
+            max-active: 20
+            min-idle: 15
+            test-while-idle: true
+            validation-query: select 1
+    thymeleaf:
+         mode: LEGACYHTML5
+         cache: false
+         prefix: classpath:/templates/
+         suffix: .html
+         check-template-location: true
+         enabled: true
+         encoding: UTF-8
+    application:
+      name: favourite
+
+    redis:
+        host: 127.0.0.1:6379
+        password:
+        clusterNodes: 192.168.1.217:7001,192.168.1.218:7002,192.168.1.218:7003,192.168.1.219:7004,192.168.1.219:7005,192.168.1.219:7006
+        expireSeconds: 120
+        commandTimeout: 10000  #redis操作的超时时间
+        cluster: true
+        pool:
+             maxActive: 5000 #最大连接数
+             maxIdle: 30 #最大空闲连接数
+             minIdle: 5 #最小空闲连接数
+             maxWait: 3000  #获取连接最大等待时间 ms  #default -1
+
+
